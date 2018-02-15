@@ -10,6 +10,14 @@ router.get("/posts", function (req, res) {
     res.render("posts");
 });
 
+router.get("/login", function (req, res) {
+    res.render("login");
+});
+
+router.get("/signup", function (req, res) {
+    res.render("signup");
+});
+
 router.get("/post", function (req, res) {
     res.render("post", {
         post:"assets/img/Bodie.jpg",

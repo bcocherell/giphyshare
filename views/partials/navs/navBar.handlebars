@@ -2,7 +2,7 @@
     <a class="navbar-brand" href="/">
         <svg width="115" height="105" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <g>
-                <title>Layer 1</title>
+                <title>Giphy Share</title>
                 <g id="navLogo" fill="#bd93f9" transform="translate(77,15) scale(1.380555510520935) ">
                     <polyline points="-13.825958251953125,-9.416499376296997 4.174043655395508,8.583500385284424 -0.325958251953125,13.083500385284424 -13.825958251953125,-0.41649961471557617 -27.325958251953125,13.083500385284424 -31.825958251953125,8.583500385284424 -13.825958251953125,-9.416499376296997 "
                         id="svg_1" />
@@ -27,23 +27,30 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item {{home}}">
                 <a class="nav-link" href="/">Home
-                    <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item {{posts}}">
                 <a class="nav-link" href="/posts">Posts </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            <li class="nav-item dropdown {{login}}">
+                <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    Dropdown
+                    Login
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="dropdown-header">Login Info:</h6>
+                            {{> forms/loginForm}}
+                            <div class="dropdown-divider"></div>
+                            <a href="/signup" class="btn btn-block btn-danger">Make a new account</a>
+                        </div>
+                    </div>
                 </div>
+            </li>
+            <li class="nav-item {{signup}}">
+                <a class="nav-link" href="/signup">Sign Up
+                </a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
