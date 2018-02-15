@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Post = sequelize.define("post", {
+  var Subpost = sequelize.define("subpost", {
     url: {
       type: DataTypes.STRING,
       allowNull: false
@@ -11,16 +11,20 @@ module.exports = function(sequelize, DataTypes) {
     comment: DataTypes.STRING
   });
 
-  Post.associate = function(models) {
-    Post.belongsTo(models.user, {
+  Subpost.associate = function(models) {
+    Subpost.belongsTo(models.user, {
+      foreignKey: {
+        allowNull: false,
+      },
+      onDelete: "CASCADE"
+    });
+    Subpost.belongsTo(models.post, {
       foreignKey: {
         allowNull: false
       },
       onDelete: "CASCADE"
     });
-    Post.hasMany(models.like);
-    Post.hasMany(models.subpost);
   };
 
-  return Post;
+  return Subpost;
 };
