@@ -1,10 +1,33 @@
-.postPic{
-    max-height:500px;
+.picContainer{
+    position: relative;
     margin-bottom:30px;
 }
+.picContainer:hover .overlay{
+    opacity: 1;
+}
+.postPic{
+    max-height:500px;
+}
+.overlay {
+    position: absolute; 
+    bottom: 0; 
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1; 
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
 #navLogo:hover{
     fill:#8BE9FD;
 }
 .dropdown-menu{
     padding:5px;
+}
+.comments {
+    background: rgba(255, 255, 255, 0.1);
 }
