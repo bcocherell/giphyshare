@@ -10,4 +10,9 @@ router.get("/posts", function(req, res) {
     res.render("posts");
 });
 
+router.get("/post", function(req, res) {
+    res.render("post");
+});
+
+
 module.exports = router;
