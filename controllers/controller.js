@@ -109,7 +109,14 @@ router.get("/signup", function (req, res) {
 
 router.get("/post", function (req, res) {
     res.render("post", {
-        post: "/assets/img/Bodie.jpg",
+        images: {
+            fixed_height_still: {
+                url: "/assets/img/Bodie.jpg"
+            },
+            fixed_height: {
+                url: "/assets/img/Bodie.jpg"
+            }
+        },
         comments: [{
             text: 'Hello this is the first comment'
         }, {
