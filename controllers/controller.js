@@ -81,8 +81,15 @@ router.get("/posts", function (req, res) {
             }
         },
         {
-            postUrl: "post/1",
-            'images.fixed_height.url': "/assets/img/Bodie.jpg"
+            postUrl: "post/",
+            images: {
+                fixed_height_still: {
+                    url: "/assets/img/Bodie.jpg"
+                },
+                fixed_height: {
+                    url: "/assets/img/Bodie.jpg"
+                }
+            }
         },
         {
             postUrl: "post/",
