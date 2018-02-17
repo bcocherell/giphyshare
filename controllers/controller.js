@@ -11,11 +11,11 @@ router.get("/posts", function (req, res) {
     db.post.findAll({
         include: [db.user],
         order: [
-          ['createdAt', 'DESC']
+            ['createdAt', 'DESC']
         ]
     }).then(function (postsArr) {
         var posts = {
-            posts:postsArr
+            posts: postsArr
         };
         res.render("posts", posts);
     });
@@ -29,78 +29,37 @@ router.get("/signup", function (req, res) {
     res.render("signup");
 });
 
-router.get("/post", function (req, res) {
-    res.render("post", {
-        images: {
-            fixed_height_still: {
-                url: "/assets/img/Bodie.jpg"
-            },
-            fixed_height: {
-                url: "/assets/img/Bodie.jpg"
-            }
-        },
-        comments: [{
-            text: 'Hello this is the first comment'
-        }, {
-            text: 'Comment the second'
-        }
-        ]
+router.get("/post/:id", function (req, res) {
+    db.post.findAll({
+        include: [db.subpost],
+        where: { id: req.params.id }
+    }).then(function (dbPost) {
+        db.subpost.findAll({
+            where: { postId: req.params.id },
+            order: [
+                ['createdAt', 'ASC']
+            ]
+        }).then(function (dbSubpost) {
+            res.render("post", {
+                comments:dbSubpost,
+                dataValues:{
+                    urlOriginal:dbPost[0].dataValues.urlOriginal,
+                    url:dbPost[0].dataValues.url,
+                    urlOriginalStill:dbPost[0].dataValues.urlOriginalStill,
+                    urlStill:dbPost[0].dataValues.urlStill,
+                    id:dbPost[0].dataValues.id
+                }
+            });
+        });
     });
 });
 
-router.get("/user", function (req, res) {
-    res.render("user", {
-        posts: [{
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }]
+
+router.get("/user/:id", function (req, res) {
+    db.post.findAll({
+        where: { userId: req.params.id }
+    }).then(function (dbPost) {
+        res.render("user", { posts: dbPost });
     });
 });
 

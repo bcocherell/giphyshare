@@ -1,9 +1,9 @@
 {{> navs/navBar user='active'}} 
-<div class="row justify-content-between">
+<div class="row justify-content-left">
     {{#each posts}}
         <div class="col-lg-3 col-md-6">
-            <a href={{postUrl}}>
-                {{> posts/post imgUrl=imgUrl }}
+            <a href="/post/{{dataValues.id}}">
+                {{> posts/post }}
             </a>
         </div>
     {{/each}}
