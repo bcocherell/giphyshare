@@ -5,7 +5,10 @@ module.exports = function(app) {
   // get all subposts for particular postId
   app.get("/api/subposts/:id", function(req, res) {
     db.subpost.findAll({
-      where: { postId: req.params.id }
+      where: { postId: req.params.id },
+      order: [
+        ['createdAt', 'DESC']
+      ]
     }).then(function(dbSubpost) {
       res.json(dbSubpost);
     });

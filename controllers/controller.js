@@ -9,7 +9,10 @@ router.get("/", function (req, res) {
 
 router.get("/posts", function (req, res) {
     db.post.findAll({
-        include: [db.user]
+        include: [db.user],
+        order: [
+          ['createdAt', 'DESC']
+        ]
     }).then(function (postsArr) {
         var posts = {
             posts:postsArr
