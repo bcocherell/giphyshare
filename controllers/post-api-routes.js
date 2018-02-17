@@ -7,7 +7,7 @@ module.exports = function(app) {
     db.post.findAll({
       include: [db.user],
       order: [
-        [db.post, 'createdAt', 'DESC']
+        ['createdAt', 'DESC']
       ]
     }).then(function(dbPost) {
       res.json(dbPost);
@@ -19,7 +19,7 @@ module.exports = function(app) {
     db.post.findAll({
       where: { userId: req.params.id },
       order: [
-        [db.post, 'createdAt', 'DESC']
+        ['createdAt', 'DESC']
       ]
     }).then(function(dbPost) {
       res.json(dbPost);
