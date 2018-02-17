@@ -1,7 +1,7 @@
 <div class="text-center picContainer">
     <img class="img-fluid rounded postPic" data-original={{dataValues.urlOriginal}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.urlStill}} src={{dataValues.url}}>
     <div class="overlay">
-        <button class="btn btn-secondary likeBtn">
+        <button class="btn btn-secondary likeBtn" data-postId={{dataValues.id}}>
            <i class="far fa-thumbs-up"></i> Like
         </button>
         <button class="btn btn-warning shareBtn" data-toggle="modal" data-target="#shareModal">
