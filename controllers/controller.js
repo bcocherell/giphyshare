@@ -1,108 +1,20 @@
 var express = require("express");
 var request = require("request");
 var router = express.Router();
+var db = require("../models");
 
 router.get("/", function (req, res) {
     res.render("index");
 });
 
 router.get("/posts", function (req, res) {
-    res.render("posts", {
-        posts: [{
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        },
-        {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }, {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        },
-        {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        },
-        {
-            postUrl: "post/",
-            images: {
-                fixed_height_still: {
-                    url: "/assets/img/Bodie.jpg"
-                },
-                fixed_height: {
-                    url: "/assets/img/Bodie.jpg"
-                }
-            }
-        }
-        ]
+    db.post.findAll({
+        include: [db.user]
+    }).then(function (postsArr) {
+        var posts = {
+            posts:postsArr
+        };
+        res.render("posts", posts);
     });
 });
 
