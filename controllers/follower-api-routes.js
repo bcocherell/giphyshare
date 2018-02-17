@@ -18,4 +18,11 @@ module.exports = function(app) {
       res.json(dbFollower);
     });
   });
+
+  // add follower
+  app.post("/api/followers", function(req, res) {
+    db.follower.create(req.body).then(function(dbFollower) {
+      res.json(dbFollower);
+    });
+  });
 };

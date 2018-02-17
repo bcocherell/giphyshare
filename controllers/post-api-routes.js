@@ -20,6 +20,16 @@ module.exports = function(app) {
     });
   });
 
+  // get post by postId, includes subpost data
+  app.get("/api/post/:id", function(req, res) {
+    db.post.findAll({
+      include: [db.subpost],
+      where: { id: req.params.id }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
   // insert post
   app.post("/api/posts", function(req, res) {
     db.post.create(req.body).then(function(dbPost) {

@@ -1,12 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
   var Subpost = sequelize.define("subpost", {
     url: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     urlStill: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
+    },
+    urlOriginal: {
+      type: DataTypes.STRING
+    },
+    urlOriginalStill: {
+      type: DataTypes.STRING
     },
     comment: DataTypes.STRING
   });
