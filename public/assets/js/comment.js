@@ -4,8 +4,10 @@ $('#submitComment').on('click', function (event) {
         type: 'POST',
         data: {
             userId:2,
-            postId:9,
+            postId:$(this).attr('data-id'),
             comment: $('#postComment').val(),
         }
+    }).then(function(){
+        location.reload();
     });
 });

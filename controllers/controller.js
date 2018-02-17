@@ -37,10 +37,9 @@ router.get("/post/:id", function (req, res) {
         db.subpost.findAll({
             where: { postId: req.params.id },
             order: [
-                ['createdAt', 'DESC']
+                ['createdAt', 'ASC']
             ]
         }).then(function (dbSubpost) {
-            console.log(dbSubpost);
             res.render("post", {
                 comments:dbSubpost,
                 dataValues:{
