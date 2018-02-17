@@ -2,14 +2,14 @@
     <ul class="comments rounded">
         {{#each comments}}
         <li>
-            <h3>{{text}}</h3>
+            <h3>{{comment}}</h3>
         </li>
         {{/each}}
     </ul>
     <form>
         <div class="form-group">
-            <label class="text-primary" for="exampleFormControlTextarea1">Leave a comment</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label class="text-primary" for="postComment">Leave a comment</label>
+            <textarea class="form-control" id="postComment" rows="3"></textarea>
         </div>
         <button id="submitComment" class="btn btn-primary">
             Post

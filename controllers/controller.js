@@ -11,7 +11,7 @@ router.get("/posts", function (req, res) {
     db.post.findAll({
         include: [db.user],
         order: [
-          ['createdAt', 'DESC']
+            ['createdAt', 'DESC']
         ]
     }).then(function (postsArr) {
         var posts = {
@@ -34,15 +34,33 @@ router.get("/post/:id", function (req, res) {
         include: [db.subpost],
         where: { id: req.params.id }
     }).then(function (dbPost) {
-        res.render("post", dbPost[0]);
+        db.subpost.findAll({
+            where: { postId: req.params.id },
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        }).then(function (dbSubpost) {
+            console.log(dbSubpost);
+            res.render("post", {
+                comments:dbSubpost,
+                dataValues:{
+                    urlOriginal:dbPost[0].dataValues.urlOriginal,
+                    url:dbPost[0].dataValues.url,
+                    urlOriginalStill:dbPost[0].dataValues.urlOriginalStill,
+                    urlStill:dbPost[0].dataValues.urlStill,
+                    id:dbPost[0].dataValues.id
+                }
+            });
+        });
     });
 });
+
 
 router.get("/user/:id", function (req, res) {
     db.post.findAll({
         where: { userId: req.params.id }
     }).then(function (dbPost) {
-        res.render("user", {posts:dbPost});
+        res.render("user", { posts: dbPost });
     });
 });
 
