@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Like = sequelize.define("like", {
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       unique: "userIdpostId"
     },
     postId: {

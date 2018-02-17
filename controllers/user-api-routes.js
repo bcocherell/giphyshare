@@ -10,9 +10,9 @@ module.exports = function(app) {
   });
 
   // get user info by username
-  app.get("/api/users/:username", function(req, res) {
+  app.get("/api/users/:id", function(req, res) {
     db.user.findOne({
-      where: {username: req.params.username}
+      where: {id: req.params.id}
     }).then(function(dbUser) {
       res.json(dbUser);
     });

@@ -5,12 +5,12 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: true
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: "userIdfollowerId"
     },
     followerId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: "userIdfollowerId"
     }
