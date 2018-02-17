@@ -4,9 +4,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: "userIdfollowerId"
+    },
     followerId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: "userIdfollowerId"
     }
   });
 
@@ -18,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "CASCADE"
     });
     Follower.belongsTo(models.user, {
+      as: "Followers",
       foreignKey: {
         name: "followerId",
         allowNull: false
