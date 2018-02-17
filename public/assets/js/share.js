@@ -1,4 +1,5 @@
-$('.shareBtn').on('click', function () {
+$('.shareBtn').on('click', function (event) {
+    event.preventDefault();
     $('#modalPicContainer').empty();
     var src= $(this).parent().parent().children('.postPic');
     $('#modalPicContainer').append(src);
@@ -13,8 +14,9 @@ $('.postBtn').on('click', function (event) {
             urlStill: img.attr('data-fixed'),
             urlOriginal: img.attr('data-original'),
             urlOriginalStill: img.attr('data-fixed-small'),
-            comment: $('#modalComment').val(),
-            userId: 1
+            comment: $('#postComment').val(),
+            title:$('#postTitle').val(),
+            userId: 2
         }
     });
 });
