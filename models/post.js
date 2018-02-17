@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     urlOriginalStill: {
       type: DataTypes.STRING
     },
-    comment: DataTypes.STRING
+    comment: DataTypes.STRING,
+    title: DataTypes.STRING
   });
 
   Post.associate = function(models) {

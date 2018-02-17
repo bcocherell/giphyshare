@@ -38,6 +38,8 @@ var routes = require("./controllers/controller.js");
 require("./controllers/user-api-routes.js")(app);
 require("./controllers/post-api-routes.js")(app);
 require("./controllers/follower-api-routes.js")(app);
+require("./controllers/like-api-routes.js")(app);
+require("./controllers/subpost-api-routes.js")(app);
 
 app.use(routes);
 // Syncing our sequelize models and then starting our Express app
