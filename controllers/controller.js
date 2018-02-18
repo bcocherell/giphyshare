@@ -77,13 +77,7 @@ router.post("/search", function (req, res) {
     request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + req.body.search, function (err, response, body) {
         var resultsArr = JSON.parse(body).data;
         var gifsArrObj = {
-            resultsArr:
-                [
-                    { data: resultsArr.slice(0, 6) },
-                    { data: resultsArr.slice(6, 12) },
-                    { data: resultsArr.slice(12, 18) },
-                    { data: resultsArr.slice(18, 24) },
-                ]
+            posts:resultsArr
         };
         res.render("search", gifsArrObj);
     });
