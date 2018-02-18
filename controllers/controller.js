@@ -59,9 +59,17 @@ router.get("/post/:id", function (req, res) {
 
 router.get("/user/:id", function (req, res) {
     db.post.findAll({
-        where: { userId: req.params.id }
+        where: { userId: req.params.id },
+        include: [db.user],
+        order: [
+            ['createdAt', 'ASC']
+          ]
     }).then(function (dbPost) {
-        res.render("user", { posts: dbPost });
+        res.render("user", { 
+            posts: dbPost,
+            userName:dbPost[0].dataValues.user.firstName + ' ' + dbPost[0].dataValues.user.lastName,
+            userId: dbPost[0].dataValues.userId
+         });
     });
 });
 
