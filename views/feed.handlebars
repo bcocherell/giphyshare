@@ -1,0 +1,8 @@
+{{> navs/navBar feed='active' }}
+<div class="card-columns">
+    {{#each posts}}
+            <a href="/post/{{dataValues.id}}">
+                {{> posts/post multiPost=true}}
+            </a>
+    {{/each}}
+</div>
