@@ -1,8 +1,8 @@
 <div class="text-center picContainer">
     {{#if bigPic}}
-        <img class="img-fluid rounded postPic" data-small={{dataValues.url}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.urlStill}} src={{dataValues.urlOriginal}}>
+        <img class="img-fluid rounded postPic" data-small={{dataValues.url}} data-fixed-small={{dataValues.urlStill}} data-fixed={{dataValues.urlOriginal}} src={{dataValues.urlOriginalStill}}>
     {{else}}
-         <img class="img-fluid rounded postPic" data-original={{dataValues.urlOriginal}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.urlStill}} src={{dataValues.url}}>
+         <img class="img-fluid rounded postPic" data-original={{dataValues.urlOriginal}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.url}} src={{dataValues.urlStill}}>
     {{/if}}
     <div class="overlay">
         <button class="btn btn-secondary likeBtn" data-postId={{dataValues.id}}>
