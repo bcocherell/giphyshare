@@ -1,12 +1,12 @@
 .picContainer{
     position: relative;
-    margin-bottom:30px;
 }
 .picContainer:hover .overlay{
     opacity: 1;
 }
 .postPic{
     border:5px solid #FFB86C;
+    width:100%;
 }
 .overlay {
     position: absolute; 

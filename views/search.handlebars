@@ -1,7 +1,7 @@
 {{> navs/navBar}}
 
-<div class="row justify-content-left">
-        {{#each resultsArr}}
-            {{> posts/searchResults gifArr=data}}            
+<div class="card-columns">
+        {{#each posts }}
+            {{> posts/post searchPost=true}}            
         {{/each}}
 </div>
