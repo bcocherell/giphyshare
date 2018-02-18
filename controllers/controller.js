@@ -21,6 +21,20 @@ router.get("/posts", function (req, res) {
     });
 });
 
+router.get("/feed", function (req, res) {
+    db.post.findAll({
+        include: [db.user],
+        order: [
+            ['createdAt', 'DESC']
+        ]
+    }).then(function (postsArr) {
+        var posts = {
+            posts: postsArr
+        };
+        res.render("feed", posts);
+    });
+});
+
 router.get("/login", function (req, res) {
     res.render("login");
 });
@@ -56,7 +70,6 @@ router.get("/post/:id", function (req, res) {
     });
 });
 
-
 router.get("/user/:id", function (req, res) {
     db.post.findAll({
         where: { userId: req.params.id },
@@ -75,11 +88,10 @@ router.get("/user/:id", function (req, res) {
 
 router.post("/search", function (req, res) {
     request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + req.body.search, function (err, response, body) {
-        var resultsArr = JSON.parse(body).data;
-        var gifsArrObj = {
-            posts:resultsArr
+        var posts = {
+            posts:JSON.parse(body).data
         };
-        res.render("search", gifsArrObj);
+        res.render("search", posts);
     });
 });
 
