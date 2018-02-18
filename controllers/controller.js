@@ -43,6 +43,8 @@ router.get("/post/:id", function (req, res) {
             res.render("post", {
                 comments:dbSubpost,
                 dataValues:{
+                    comment:dbPost[0].comment,
+                    title:dbPost[0].title,
                     urlOriginal:dbPost[0].dataValues.urlOriginal,
                     url:dbPost[0].dataValues.url,
                     urlOriginalStill:dbPost[0].dataValues.urlOriginalStill,
