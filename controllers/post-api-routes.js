@@ -42,4 +42,26 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
+
+  // posts of all followers for particular userId
+  app.get("/api/followerposts/:id", function(req, res) {
+    db.post.findAll({
+      include: [{
+        model: db.user,
+        required: true,
+        include: [{
+          model: db.follower,
+          as: 'Followers',
+          where: {userId: req.params.id},
+          required: true
+        }]
+      }],
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
 };
