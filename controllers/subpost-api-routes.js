@@ -5,6 +5,7 @@ module.exports = function(app) {
   // get all subposts for particular postId
   app.get("/api/subposts/:id", function(req, res) {
     db.subpost.findAll({
+      include: [db.User],
       where: { postId: req.params.id },
       order: [
         ['createdAt', 'DESC']

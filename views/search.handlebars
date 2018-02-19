@@ -1,7 +1,25 @@
 {{> navs/navBar}}
 
 <div class="card-columns">
-        {{#each posts }}
-            {{> posts/post searchPost=true}}            
-        {{/each}}
+    {{#each posts }} {{> posts/post searchPost=true}} {{/each}}
+</div>
+
+<div class="row text-center justify-content-center">
+    {{#if lastPage}}
+        <div class="col-md-4">
+            <form action="/search" method="post" class="form-inline my-2 my-lg-0">
+                <input type="hidden" name="search" value={{search}}>
+                <input name="offset" type="hidden" value={{lastPage}}>
+                <button data-page={{lastPage}} type="submit" class="btn btn-danger btn-block">Previous page</button>
+            </form>
+        </div>
+    {{/if}}
+
+    <div class="col-md-4">
+        <form action="/search" method="post">
+            <input type="hidden" name="search" value={{search}}>
+            <input name="offset" type="hidden" value={{nextPage}}>
+            <button data-page={{netxPage}} type="submit" class="btn btn-success btn-block">More Gifs!</button>
+        </form>
+    </div>
 </div>
