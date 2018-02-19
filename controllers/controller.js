@@ -34,7 +34,16 @@ router.get("/posts", function (req, res) {
 
 router.get("/feed", function (req, res) {
     db.post.findAll({
-        include: [db.user],
+        include: [{
+            model: db.user,
+            required: true,
+            include: [{
+                model: db.follower,
+                as: 'Followers',
+                where: { userId: 1 },
+                required: true
+            }]
+        }],
         order: [
             ['createdAt', 'DESC']
         ]
@@ -67,10 +76,15 @@ router.get("/login", function (req, res) {
 
 router.get("/post/:id", function (req, res) {
     db.post.findAll({
+<<<<<<< HEAD
         include: [db.subpost],
         where: {
             id: req.params.id
         }
+=======
+        include: [db.subpost, db.user],
+        where: { id: req.params.id }
+>>>>>>> origin
     }).then(function (dbPost) {
         db.subpost.findAll({
             where: {
@@ -89,7 +103,12 @@ router.get("/post/:id", function (req, res) {
                     url: dbPost[0].dataValues.url,
                     urlOriginalStill: dbPost[0].dataValues.urlOriginalStill,
                     urlStill: dbPost[0].dataValues.urlStill,
+<<<<<<< HEAD
                     id: dbPost[0].dataValues.id
+=======
+                    id: dbPost[0].dataValues.id,
+                    author:dbPost[0].dataValues.user
+>>>>>>> origin
                 }
             });
         });
@@ -115,9 +134,17 @@ router.get("/user/:id", function (req, res) {
 });
 
 router.post("/search", function (req, res) {
-    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + req.body.search, function (err, response, body) {
+    var offset=parseInt(req.body.offset);
+    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=16&q=" + req.body.search + "&offset=" + ((offset-1)*16), function (err, response, body) {
         var posts = {
+<<<<<<< HEAD
             posts: JSON.parse(body).data
+=======
+            lastPage:offset-1,
+            nextPage:offset+1,
+            posts: JSON.parse(body).data,
+            search:req.body.search
+>>>>>>> origin
         };
         res.render("search", posts);
     });
