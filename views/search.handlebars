@@ -6,8 +6,8 @@
 
 <div class="row text-center justify-content-center">
     {{#if lastPage}}
-        <div class="col-md-4">
-            <form action="/search" method="post" class="form-inline my-2 my-lg-0">
+        <div class="col-6">
+            <form action="/search" method="post">
                 <input type="hidden" name="search" value={{search}}>
                 <input name="offset" type="hidden" value={{lastPage}}>
                 <button data-page={{lastPage}} type="submit" class="btn btn-danger btn-block">Previous page</button>
@@ -15,7 +15,7 @@
         </div>
     {{/if}}
 
-    <div class="col-md-4">
+    <div class="col-6">
         <form action="/search" method="post">
             <input type="hidden" name="search" value={{search}}>
             <input name="offset" type="hidden" value={{nextPage}}>

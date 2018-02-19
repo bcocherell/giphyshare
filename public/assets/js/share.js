@@ -1,3 +1,4 @@
+var alertTimeout;
 $('.shareBtn').on('click', function (event) {
     event.preventDefault();
     $('#modalPicContainer').empty();
@@ -25,4 +26,9 @@ $('.postBtn').on('click', function (event) {
     $('#postComment').val('');
     $('#postTitle').val('');
     $('#shareModal').modal('hide');
+    $('nav').after('<div class="alert alert-primary" role="alert">Gif added!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    if(alertTimeout)clearTimeout(alertTimeout);
+    alertTimeout = setTimeout(function(){ 
+        $('.alert').remove();
+     }, 5000);
 });
