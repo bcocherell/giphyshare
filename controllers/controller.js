@@ -23,7 +23,16 @@ router.get("/posts", function (req, res) {
 
 router.get("/feed", function (req, res) {
     db.post.findAll({
-        include: [db.user],
+        include: [{
+            model: db.user,
+            required: true,
+            include: [{
+                model: db.follower,
+                as: 'Followers',
+                where: { userId: 1 },
+                required: true
+            }]
+        }],
         order: [
             ['createdAt', 'DESC']
         ]
@@ -55,15 +64,15 @@ router.get("/post/:id", function (req, res) {
             ]
         }).then(function (dbSubpost) {
             res.render("post", {
-                comments:dbSubpost,
-                dataValues:{
-                    comment:dbPost[0].comment,
-                    title:dbPost[0].title,
-                    urlOriginal:dbPost[0].dataValues.urlOriginal,
-                    url:dbPost[0].dataValues.url,
-                    urlOriginalStill:dbPost[0].dataValues.urlOriginalStill,
-                    urlStill:dbPost[0].dataValues.urlStill,
-                    id:dbPost[0].dataValues.id
+                comments: dbSubpost,
+                dataValues: {
+                    comment: dbPost[0].comment,
+                    title: dbPost[0].title,
+                    urlOriginal: dbPost[0].dataValues.urlOriginal,
+                    url: dbPost[0].dataValues.url,
+                    urlOriginalStill: dbPost[0].dataValues.urlOriginalStill,
+                    urlStill: dbPost[0].dataValues.urlStill,
+                    id: dbPost[0].dataValues.id
                 }
             });
         });
@@ -76,20 +85,24 @@ router.get("/user/:id", function (req, res) {
         include: [db.user],
         order: [
             ['createdAt', 'ASC']
-          ]
+        ]
     }).then(function (dbPost) {
-        res.render("user", { 
+        res.render("user", {
             posts: dbPost,
-            userName:dbPost[0].dataValues.user.firstName + ' ' + dbPost[0].dataValues.user.lastName,
+            userName: dbPost[0].dataValues.user.firstName + ' ' + dbPost[0].dataValues.user.lastName,
             userId: dbPost[0].dataValues.userId
-         });
+        });
     });
 });
 
 router.post("/search", function (req, res) {
-    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + req.body.search, function (err, response, body) {
+    var offset=parseInt(req.body.offset);
+    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=16&q=" + req.body.search + "&offset=" + (offset*16), function (err, response, body) {
         var posts = {
-            posts:JSON.parse(body).data
+            lastPage:(offset-1)>0 ? offset-1 : 0,
+            nextPage:offset+1,
+            posts: JSON.parse(body).data,
+            search:req.body.search
         };
         res.render("search", posts);
     });
