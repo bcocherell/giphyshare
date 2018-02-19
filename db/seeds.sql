@@ -66,7 +66,7 @@ values ('1',
 'https://media3.giphy.com/media/oDLDbBgf0dkis/giphy_s.gif',
 'Post 2', '2018-02-16', '2018-02-16', 'Post 2');
 
-insert into subposts (userId, postId, url, urlStill, urlOriginal, urlOriginalStill, comment, createdAt, updatedAt)
+insert into subposts (userId, postId, url, urlStill, urlOriginal, urlOriginalStill, comment, createdAt, updatedAt, title)
 values ('2', 1,
 'https://media3.giphy.com/media/xUA7aQaXbhnkX4znm8/200w.gif',
 'https://media3.giphy.com/media/xUA7aQaXbhnkX4znm8/200w_s.gif',

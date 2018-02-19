@@ -18,7 +18,8 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = function(models) {
     User.hasMany(models.follower);
     User.hasMany(models.follower, {
-      foreignKey: "followerId"
+      foreignKey: "followerId",
+      as: "Followers"
     });
     User.hasMany(models.post);
     User.hasMany(models.like);
