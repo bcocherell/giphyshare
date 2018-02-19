@@ -97,9 +97,9 @@ router.get("/user/:id", function (req, res) {
 
 router.post("/search", function (req, res) {
     var offset=parseInt(req.body.offset);
-    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=16&q=" + req.body.search + "&offset=" + (offset*16), function (err, response, body) {
+    request("https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=16&q=" + req.body.search + "&offset=" + ((offset-1)*16), function (err, response, body) {
         var posts = {
-            lastPage:(offset-1)>0 ? offset-1 : 0,
+            lastPage:offset-1,
             nextPage:offset+1,
             posts: JSON.parse(body).data,
             search:req.body.search
