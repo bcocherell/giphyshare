@@ -54,7 +54,7 @@ router.get("/signup", function (req, res) {
 
 router.get("/post/:id", function (req, res) {
     db.post.findAll({
-        include: [db.subpost],
+        include: [db.subpost, db.user],
         where: { id: req.params.id }
     }).then(function (dbPost) {
         db.subpost.findAll({
@@ -72,7 +72,8 @@ router.get("/post/:id", function (req, res) {
                     url: dbPost[0].dataValues.url,
                     urlOriginalStill: dbPost[0].dataValues.urlOriginalStill,
                     urlStill: dbPost[0].dataValues.urlStill,
-                    id: dbPost[0].dataValues.id
+                    id: dbPost[0].dataValues.id,
+                    author:dbPost[0].dataValues.user
                 }
             });
         });
