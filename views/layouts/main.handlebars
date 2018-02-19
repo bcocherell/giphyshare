@@ -8,7 +8,24 @@
     <title>Giphy Share</title>
     <link rel="stylesheet" href="/assets/css/bootstrapTheme.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <!---firebase according to instructions needs to be the first script tag-->
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAESTO4NO8pJoJzewY5n91ncapUyJirgos",
+    authDomain: "giphyshare-749cb.firebaseapp.com",
+    databaseURL: "https://giphyshare-749cb.firebaseio.com",
+    projectId: "giphyshare-749cb",
+    storageBucket: "giphyshare-749cb.appspot.com",
+    messagingSenderId: "242074518723"
+  };
+  firebase.initializeApp(config);
+</script>
+<!---end firebase section --->
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 </head>
 
 <body class="bg-dark">
