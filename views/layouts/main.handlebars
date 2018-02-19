@@ -5,25 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="/assets/img/bigLogo.png">
+    <meta property="og:url" content="https://fathomless-plateau-62841.herokuapp.com">
+    <meta property="og:title" content="Giphy Share">
+    <meta property="og:description" content="Find and share gifs">
+    <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="169805303662323">
     <title>Giphy Share</title>
     <link rel="stylesheet" href="/assets/css/bootstrapTheme.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <!---firebase according to instructions needs to be the first script tag-->
-    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAESTO4NO8pJoJzewY5n91ncapUyJirgos",
-    authDomain: "giphyshare-749cb.firebaseapp.com",
-    databaseURL: "https://giphyshare-749cb.firebaseio.com",
-    projectId: "giphyshare-749cb",
-    storageBucket: "giphyshare-749cb.appspot.com",
-    messagingSenderId: "242074518723"
-  };
-  firebase.initializeApp(config);
-</script>
-<!---end firebase section --->
-
+    <link rel="icon" type="image/png" href="/assets/img/noTextLogo.png">
+    <link rel="logo" type="image/svg" href="assets/img/noTextLogo.svg">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 </head>
@@ -33,13 +25,16 @@
         {{{body}}}
         {{>modals/shareModal}}
     </div>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script defer src="assets/js/share.js"></script>
+    <script defer src="/assets/js/share.js"></script>
+    <script defer src="/assets/js/like.js"></script>
+    <script defer src="/assets/js/comment.js"></script>
+    <script defer src="/assets/js/lazyLoad.js"></script>
+    <script defer src="/assets/js/followBtn.js"></script>
 </body>
-
 </html>

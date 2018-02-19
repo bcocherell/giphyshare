@@ -5,7 +5,10 @@ module.exports = function(app) {
   // get all public posts, includes user info
   app.get("/api/posts", function(req, res) {
     db.post.findAll({
-      include: [db.user]
+      include: [db.user],
+      order: [
+        ['createdAt', 'DESC']
+      ]
     }).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -14,7 +17,10 @@ module.exports = function(app) {
   // get all user post for particular userId
   app.get("/api/posts/:id", function(req, res) {
     db.post.findAll({
-      where: { userId: req.params.id }
+      where: { userId: req.params.id },
+      order: [
+        ['createdAt', 'DESC']
+      ]
     }).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -36,4 +42,26 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
+
+  // posts of all followers for particular userId
+  app.get("/api/followerposts/:id", function(req, res) {
+    db.post.findAll({
+      include: [{
+        model: db.user,
+        required: true,
+        include: [{
+          model: db.follower,
+          as: 'Followers',
+          where: {userId: req.params.id},
+          required: true
+        }]
+      }],
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
 };

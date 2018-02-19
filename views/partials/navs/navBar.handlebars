@@ -46,9 +46,19 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item {{signup}}">
-                <a class="nav-link" href="/signup">Sign Up
+            <li class="nav-item dropdown {{signup}}">
+               <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Sign Up
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="dropdown-header">Login Info:</h6>
+                            {{> forms/signUpForm}}
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
         <form action="/search" method="post" class="form-inline my-2 my-lg-0">

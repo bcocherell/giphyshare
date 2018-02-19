@@ -1,11 +1,22 @@
-<div class="text-center picContainer">
-    <img class="img-fluid rounded postPic" data-original={{dataValues.urlOriginal}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.urlStill}} src={{dataValues.url}}>
+<div class="text-center picContainer card bg-dark">
+    {{#if singlePost}}
+        <img class="img-fluid rounded postPic" data-small={{dataValues.url}} data-fixed-small={{dataValues.urlStill}} data-fixed={{dataValues.urlOriginal}} src={{dataValues.urlOriginalStill}}>
+    {{/if}}
+    {{#if multiPost}}
+         <img class="img-fluid rounded postPic" data-original={{dataValues.urlOriginal}} data-fixed-small={{dataValues.urlOriginalStill}} data-fixed={{dataValues.url}} src={{dataValues.urlStill}}>
+    {{/if}}
+    {{#if searchPost}}
+         <img class="img-fluid rounded postPic" data-original={{images.original.url}} data-fixed-small={{images.fixed_height_small_still.url}} data-fixed={{images.fixed_height_downsampled.webp}} src={{images.fixed_height_still.url}}>
+    {{/if}}
     <div class="overlay">
-        <button class="btn btn-secondary likeBtn">
-           <i class="far fa-thumbs-up"></i> Like
-        </button>
+        {{#unless searchPost}}
+            <button class="btn btn-secondary likeBtn" data-postId={{dataValues.id}}>
+                <i class="far fa-thumbs-up"></i> Like
+            </button>
+        {{/unless}}
         <button class="btn btn-warning shareBtn" data-toggle="modal" data-target="#shareModal">
             <i class="fas fa-share-alt"></i> Share
         </button>
+        
     </div>
 </div>
