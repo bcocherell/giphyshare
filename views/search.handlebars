@@ -9,8 +9,8 @@
         <div class="col-md-4">
             <form action="/search" method="post" class="form-inline my-2 my-lg-0">
                 <input type="hidden" name="search" value={{search}}>
-                <input id="offset" name="offset" type="hidden" value={{lastPage}}>
-                <button data-page={{lastPage}} type="submit" class="btn btn-warning btn-block">Previous page</button>
+                <input name="offset" type="hidden" value={{lastPage}}>
+                <button data-page={{lastPage}} type="submit" class="btn btn-danger btn-block">Previous page</button>
             </form>
         </div>
     {{/if}}
@@ -18,8 +18,8 @@
     <div class="col-md-4">
         <form action="/search" method="post">
             <input type="hidden" name="search" value={{search}}>
-            <input id="offset" name="offset" type="hidden" value={{nextPage}}>
-            <button data-page={{netxPage}} type="submit" class="btn btn-secondary btn-block">More Gifs!</button>
+            <input name="offset" type="hidden" value={{nextPage}}>
+            <button data-page={{netxPage}} type="submit" class="btn btn-success btn-block">More Gifs!</button>
         </form>
     </div>
 </div>
