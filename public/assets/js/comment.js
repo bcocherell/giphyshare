@@ -5,7 +5,7 @@ $('#submitComment').on('click', function (event) {
         data: {
             userId:$(this).attr('data-user'),
             postId:$(this).attr('data-id'),
-            comment: $('#postComment').val(),
+            comment: $('#subPostComment').val(),
         }
     }).then(function(){
         location.reload();
