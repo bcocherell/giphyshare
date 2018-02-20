@@ -27,13 +27,14 @@ $('#signUpBtn').on('click', function (event) {
                 id: user.uid,
                 firstName: $('#firstName').val(),
                 lastName: $('#lastName').val(),
-                userame: $('#firstName').val() + ' ' + $('#lastName').val()
+                username: $('#firstName').val() + ' ' + $('#lastName').val()
             }
         }).then(function () {
             $('#signUpEmail').val('');
             $('#signUpPassword').val('');
             $('#firstName').val('');
             $('#lastName').val('');
+            location.reload();
         });
     });
 });
