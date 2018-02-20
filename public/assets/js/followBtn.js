@@ -3,8 +3,8 @@ $('#followBtn').on('click', function (event) {
     $.ajax('/api/followers', {
         type: 'POST',
         data: {
-            userId:$(this).attr('data-id'),
-            followerId:$(this).attr('data-user'),
+            followerId:$(this).attr('data-id'),
+            userId:$(this).attr('data-user'),
             status:true
         }
     }).then(function(){

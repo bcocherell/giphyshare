@@ -7,6 +7,10 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
+router.get("/messages", function (req, res) {
+    res.render("messages");
+});
+
 router.get("/posts", function (req, res) {
     db.post.findAll({
         include: [db.user],

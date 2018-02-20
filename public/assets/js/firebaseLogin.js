@@ -60,14 +60,12 @@ $('#logoutBtn').on('click', function (event) {
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        console.log(user.uid);
-        console.log(user.displayName);
+        $('#navUserName').text(user.displayName);
         $('#userNav').show();
         $('#feedNav').show();
         $('#feedLinkNav').attr('href', '/feed/' + user.uid);
         $('#loginNav').hide();
         $('#signUpNav').hide();
-        $('#navUserName').text(user.displayName);
         $('#navUserLink').attr('href', '/user/' + user.uid);
         $('.postBtn').show();
         $('.postBtn').attr('data-user', user.uid);
