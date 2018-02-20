@@ -38,6 +38,36 @@ $('#signUpBtn').on('click', function (event) {
     });
 });
 
+$('#signUpFormBtn').on('click', function (event) {
+    event.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword($('#signUpFormEmail').val(), $('#signUpFormPassword').val()).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+    }).then(function (user) {
+        user.updateProfile({
+            displayName: $('#firstNameForm').val() + ' ' + $('#lastNameForm').val(),
+        }).then(function () {
+            $.ajax('/api/users', {
+                type: 'POST',
+                data: {
+                    id: user.uid,
+                    firstName: $('#firstNameForm').val(),
+                    lastName: $('#lastNameForm').val(),
+                    username: $('#firstNameForm').val() + ' ' + $('#lastNameForm').val()
+                }
+            }).then(function () {
+                $('#signUpFormEmail').val('');
+                $('#signUpFormPassword').val('');
+                $('#firstNameForm').val('');
+                $('#lastNameForm').val('');
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        });
+    });
+});
+
 $('#loginBtn').on('click', function (event) {
     event.preventDefault();
     firebase.auth().signInWithEmailAndPassword($('#loginEmail').val(), $('#loginPassword').val()).catch(function (error) {
@@ -47,6 +77,17 @@ $('#loginBtn').on('click', function (event) {
     });
     $('#loginEmail').val('');
     $('#loginPassword').val('');
+});
+
+$('#loginFormBtn').on('click', function (event) {
+    event.preventDefault();
+    firebase.auth().signInWithEmailAndPassword($('#loginFormEmail').val(), $('#loginFormPassword').val()).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+    });
+    $('#loginFormEmail').val('');
+    $('#loginFormPassword').val('');
 });
 
 $('#logoutBtn').on('click', function (event) {
@@ -76,6 +117,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('#followBtn').show();
         $('#submitComment').parent().show();
         $('#submitComment').attr('data-user', user.uid);
+        $('#accountBtn').hide();
     } else {
         $('#userNav').hide();
         $('#feedNav').hide();
@@ -93,5 +135,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('#followBtn').hide();
         $('#submitComment').parent().hide();
         $('#submitComment').attr('data-user', '');
+        $('#accountBtn').show();
     }
 });

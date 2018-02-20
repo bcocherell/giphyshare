@@ -1,0 +1,25 @@
+{{> navs/navBar signup='active'}}
+<div class="col-lg-4 col-md-6">
+    <form class="form" role="form" method="post" action="signUp" accept-charset="UTF-8" id="signUpForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstNameForm" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastNameForm" required>
+        </div>
+        <div class="form-group">
+            <label for="signUpFormEmail">Email address</label>
+            <input type="email" class="form-control" id="signUpFormEmail" placeholder="Email address" required>
+        </div>
+        <div class="form-group">
+            <label for="signUpFormPassword">Password</label>
+            <input type="password" class="form-control" id="signUpFormPassword" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="signUpFormBtn" class="btn btn-danger btn-block">
+                <i class="fas fa-user-plus"></i> Make an account!</button>
+        </div>
+    </form>
+</div>
