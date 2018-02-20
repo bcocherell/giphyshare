@@ -4,7 +4,7 @@ $('.likeBtn').on('click', function (event) {
         type: 'POST',
         data: {
             postId:$(this).attr('data-postid'),
-            userId: 1
+            userId:$(this).attr('data-user')
         }
     });
 });

@@ -20,7 +20,7 @@ $('.postBtn').on('click', function (event) {
             urlOriginalStill: img.attr('data-fixed-small'),
             comment: $('#postComment').val(),
             title:$('#postTitle').val(),
-            userId: 2
+            userId: $(this).attr('data-user')
         }
     });
     $('#postComment').val('');

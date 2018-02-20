@@ -3,7 +3,7 @@
 
 <h4>
     <a class="text-secondary" href="/user/{{dataValues.author.id}}">{{dataValues.author.firstName}} {{dataValues.author.lastName}}</a>
-    <button id="followBtn" class="btn btn-primary">
+    <button id="followBtn" data-id={{dataValues.author.id}} class="btn btn-primary">
         <i class="fas fa-user-plus"></i>Follow
     </button>
 </h4>
