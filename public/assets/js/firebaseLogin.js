@@ -77,6 +77,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.shareBtn').show();
         $('#followBtn').show();
         $('#submitComment').parent().show();
+        $('#submitComment').attr('data-user', user.uid);
     } else {
         $('#userNav').hide();
         $('#feedNav').hide();
@@ -93,5 +94,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.shareBtn').hide();
         $('#followBtn').hide();
         $('#submitComment').parent().hide();
+        $('#submitComment').attr('data-user', '');
     }
 });
