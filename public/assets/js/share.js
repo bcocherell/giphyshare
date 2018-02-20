@@ -10,7 +10,7 @@ $('.shareBtn').on('click', function (event) {
 
 $('.postBtn').on('click', function (event) {
     event.preventDefault();
-    var img = $(this).parent().parent().children('.modal-body').children('#modalPicContainer').children('.postPic');
+    var img = $(this).parent().parent().parent().children('#modalPicContainer').children('.postPic');
     $.ajax('/api/posts', {
         type: 'POST',
         data: {

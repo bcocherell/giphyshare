@@ -4,11 +4,13 @@
       <div class="modal-body">
         <div id="modalPicContainer" class="text-center">
         </div>
-        {{> forms/postForm}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary postBtn">Make a post</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form>
+          {{> forms/postForm}}
+          <div class="text-right form-group">
+            <button type="submit" class="btn btn-primary postBtn">Make a post</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
