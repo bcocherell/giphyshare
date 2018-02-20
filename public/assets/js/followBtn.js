@@ -4,7 +4,7 @@ $('#followBtn').on('click', function (event) {
         type: 'POST',
         data: {
             userId:$(this).attr('data-id'),
-            followerId:1,
+            followerId:$(this).attr('data-user'),
             status:true
         }
     }).then(function(){

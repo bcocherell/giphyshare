@@ -21,7 +21,7 @@ router.get("/posts", function (req, res) {
     });
 });
 
-router.get("/feed", function (req, res) {
+router.get("/feed/:id", function (req, res) {
     db.post.findAll({
         include: [{
             model: db.user,
@@ -29,7 +29,7 @@ router.get("/feed", function (req, res) {
             include: [{
                 model: db.follower,
                 as: 'Followers',
-                where: { userId: 1 },
+                where: { userId: req.params.id },
                 required: true
             }]
         }],
@@ -54,7 +54,7 @@ router.get("/signup", function (req, res) {
 
 router.get("/post/:id", function (req, res) {
     db.post.findAll({
-        include: [db.subpost],
+        include: [db.subpost, db.user],
         where: { id: req.params.id }
     }).then(function (dbPost) {
         db.subpost.findAll({
@@ -72,7 +72,8 @@ router.get("/post/:id", function (req, res) {
                     url: dbPost[0].dataValues.url,
                     urlOriginalStill: dbPost[0].dataValues.urlOriginalStill,
                     urlStill: dbPost[0].dataValues.urlStill,
-                    id: dbPost[0].dataValues.id
+                    id: dbPost[0].dataValues.id,
+                    author:dbPost[0].dataValues.user
                 }
             });
         });
@@ -87,11 +88,13 @@ router.get("/user/:id", function (req, res) {
             ['createdAt', 'ASC']
         ]
     }).then(function (dbPost) {
-        res.render("user", {
+        var posts ={posts:dbPost};
+        if(dbPost.length)posts={
             posts: dbPost,
             userName: dbPost[0].dataValues.user.firstName + ' ' + dbPost[0].dataValues.user.lastName,
             userId: dbPost[0].dataValues.userId
-        });
+        };
+        res.render("user", posts);
     });
 });
 
