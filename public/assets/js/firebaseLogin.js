@@ -27,13 +27,14 @@ $('#signUpBtn').on('click', function (event) {
                 id: user.uid,
                 firstName: $('#firstName').val(),
                 lastName: $('#lastName').val(),
-                userame: $('#firstName').val() + ' ' + $('#lastName').val()
+                username: $('#firstName').val() + ' ' + $('#lastName').val()
             }
         }).then(function () {
             $('#signUpEmail').val('');
             $('#signUpPassword').val('');
             $('#firstName').val('');
             $('#lastName').val('');
+            location.reload();
         });
     });
 });
@@ -77,6 +78,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.shareBtn').show();
         $('#followBtn').show();
         $('#submitComment').parent().show();
+        $('#submitComment').attr('data-user', user.uid);
     } else {
         $('#userNav').hide();
         $('#feedNav').hide();
@@ -93,5 +95,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.shareBtn').hide();
         $('#followBtn').hide();
         $('#submitComment').parent().hide();
+        $('#submitComment').attr('data-user', '');
     }
 });
