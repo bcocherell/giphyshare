@@ -17,24 +17,23 @@ $('#signUpBtn').on('click', function (event) {
         user.updateProfile({
             displayName: $('#firstName').val() + ' ' + $('#lastName').val(),
         }).then(function () {
-            console.log('Success');
-        }).catch(function (error) {
-            console.log(error);
-        });
-        $.ajax('/api/users', {
-            type: 'POST',
-            data: {
-                id: user.uid,
-                firstName: $('#firstName').val(),
-                lastName: $('#lastName').val(),
-                username: $('#firstName').val() + ' ' + $('#lastName').val()
-            }
-        }).then(function () {
-            $('#signUpEmail').val('');
-            $('#signUpPassword').val('');
-            $('#firstName').val('');
-            $('#lastName').val('');
-            location.reload();
+            $.ajax('/api/users', {
+                type: 'POST',
+                data: {
+                    id: user.uid,
+                    firstName: $('#firstName').val(),
+                    lastName: $('#lastName').val(),
+                    username: $('#firstName').val() + ' ' + $('#lastName').val()
+                }
+            }).then(function () {
+                $('#signUpEmail').val('');
+                $('#signUpPassword').val('');
+                $('#firstName').val('');
+                $('#lastName').val('');
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            });
         });
     });
 });
