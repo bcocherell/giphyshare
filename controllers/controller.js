@@ -3,6 +3,16 @@ var request = require("request");
 var router = express.Router();
 var db = require("../models");
 
+const firebase = require('firebase');
+const firebaseApp = firebase.initializeApp({
+    apiKey: "AIzaSyC8WXN3wKASKN5ANlgR1oR5eqvXWOCOVo8",
+    authDomain: "giphyshare.firebaseapp.com",
+    databaseURL: "https://giphyshare.firebaseio.com",
+    projectId: "giphyshare",
+    storageBucket: "giphyshare.appspot.com",
+    messagingSenderId: "414269524023"
+});
+
 router.get("/", function (req, res) {
     res.render("index");
 });
@@ -52,8 +62,26 @@ router.get("/login", function (req, res) {
     res.render("login");
 });
 
+router.post("/login", function(req, res) {
+    firebaseApp.auth().signInWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+    });
+    res.redirect("/user");
+});
+
 router.get("/signup", function (req, res) {
     res.render("signup");
+});
+
+router.post("/signup", function(req, res) {
+    firebaseApp.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+    });
+    res.redirect("/");
 });
 
 router.get("/post/:id", function (req, res) {
