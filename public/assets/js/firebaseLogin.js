@@ -115,9 +115,10 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.likeBtn').attr('data-user', user.uid);
         $('.shareBtn').show();
         $('#followBtn').show();
-        $('#submitComment').parent().show();
+        $('#submitComment').parent().parent().show();
         $('#submitComment').attr('data-user', user.uid);
         $('#accountBtn').hide();
+        $('.signUpBtn').hide();
     } else {
         $('#userNav').hide();
         $('#feedNav').hide();
@@ -133,8 +134,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         $('.likeBtn').hide();
         $('.shareBtn').hide();
         $('#followBtn').hide();
-        $('#submitComment').parent().hide();
+        $('#submitComment').parent().parent().hide();
         $('#submitComment').attr('data-user', '');
         $('#accountBtn').show();
+        $('.signUpBtn').show();
     }
 });
