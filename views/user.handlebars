@@ -1,12 +1,14 @@
 {{> navs/navBar user='active'}}
-<h2 class="text-secondary">{{userName}}
-    <button id="followBtn" data-id={{userId}} class="btn btn-primary">
-        <i class="fas fa-user-plus"></i>Follow</button>
-</h2>
-<div class="card-columns">
-    {{#each posts}}
-    <a href="/post/{{dataValues.id}}">
-        {{> posts/post multiPost=true}}
-    </a>
-    {{/each}}
-</div>
+{{#if posts}}
+    <h2 class="text-secondary">{{userName}}
+        <button id="followBtn" data-id={{userId}} class="btn btn-primary">
+            <i class="fas fa-user-plus"></i>Follow</button>
+    </h2>
+    <div class="card-columns">
+        {{#each posts}}
+        <a href="/post/{{dataValues.id}}">
+            {{> posts/post multiPost=true}}
+        </a>
+        {{/each}}
+    </div>
+{{/if}}

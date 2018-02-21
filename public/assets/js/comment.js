@@ -3,9 +3,9 @@ $('#submitComment').on('click', function (event) {
     $.ajax('/api/subposts', {
         type: 'POST',
         data: {
-            userId:2,
+            userId:$(this).attr('data-user'),
             postId:$(this).attr('data-id'),
-            comment: $('#postComment').val(),
+            comment: $('#subPostComment').val(),
         }
     }).then(function(){
         location.reload();

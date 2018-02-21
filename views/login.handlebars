@@ -1,4 +1,17 @@
 {{> navs/navBar login='active'}}
 <div class="col-lg-4 col-md-6">
-{{> forms/loginForm}}
+    <form class="form" role="form" accept-charset="UTF-8" id="loginForm">
+        <div class="form-group">
+            <label class="sr-only" for="loginFormEmail">Email address</label>
+            <input type="email" autofocus class="form-control" id="loginFormEmail" placeholder="Email address" required>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="loginFormPassword">Password</label>
+            <input type="password" class="form-control" id="loginFormPassword" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="loginFormBtn" class="btn btn-block btn-danger">
+                <i class="fas fa-sign-in-alt"></i> Login</button>
+        </div>
+    </form>
 </div>

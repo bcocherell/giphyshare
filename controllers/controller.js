@@ -17,6 +17,10 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
+router.get("/messages", function (req, res) {
+    res.render("messages");
+});
+
 router.get("/posts", function (req, res) {
     db.post.findAll({
         include: [db.user],
@@ -31,7 +35,7 @@ router.get("/posts", function (req, res) {
     });
 });
 
-router.get("/feed", function (req, res) {
+router.get("/feed/:id", function (req, res) {
     db.post.findAll({
         include: [{
             model: db.user,
@@ -39,7 +43,7 @@ router.get("/feed", function (req, res) {
             include: [{
                 model: db.follower,
                 as: 'Followers',
-                where: { userId: 1 },
+                where: { userId: req.params.id },
                 required: true
             }]
         }],
@@ -116,11 +120,13 @@ router.get("/user/:id", function (req, res) {
             ['createdAt', 'ASC']
         ]
     }).then(function (dbPost) {
-        res.render("user", {
+        var posts ={posts:dbPost};
+        if(dbPost.length)posts={
             posts: dbPost,
             userName: dbPost[0].dataValues.user.firstName + ' ' + dbPost[0].dataValues.user.lastName,
             userId: dbPost[0].dataValues.userId
-        });
+        };
+        res.render("user", posts);
     });
 });
 

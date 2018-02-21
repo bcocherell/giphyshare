@@ -25,14 +25,28 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{home}}">
-                <a class="nav-link" href="/">Home
+            <li class="nav-item dropdown {{user}}" id="userNav">
+               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span id="navUserName"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-primary btn-block text-left" href="" id="navUserLink"><i class="fas fa-user"></i> Your profile</a>
+                            <button class="btn btn-danger btn-block text-left" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item {{feed}}" id="feedNav">
+                <a class="nav-link" id="feedLinkNav" href="">Feed
                 </a>
             </li>
             <li class="nav-item {{posts}}">
                 <a class="nav-link" href="/posts">Posts </a>
             </li>
-            <li class="nav-item dropdown {{login}}">
+            <li class="nav-item dropdown {{login}}" id="loginNav">
                 <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     Login
@@ -46,16 +60,16 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown {{signup}}">
-               <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            <li class="nav-item dropdown {{signup}}" id="signUpNav">
+               <a class="nav-link dropdown-toggle" href="/signup" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     Sign Up
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="row">
                         <div class="col">
-                            <h6 class="dropdown-header">Login Info:</h6>
-                            {{> forms/signUpForm}}
+                            <h6 class="dropdown-header">Signup Info:</h6>
+                            {{> forms/navSignUpForm}}
                         </div>
                     </div>
                 </div>

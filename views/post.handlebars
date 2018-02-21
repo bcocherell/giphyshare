@@ -3,16 +3,13 @@
 
 <h4>
     <a class="text-secondary" href="/user/{{dataValues.author.id}}">{{dataValues.author.firstName}} {{dataValues.author.lastName}}</a>
-    <button id="followBtn" class="btn btn-primary">
+    <button id="followBtn" data-id={{dataValues.author.id}} class="btn btn-primary">
         <i class="fas fa-user-plus"></i>Follow
     </button>
 </h4>
 
-<div class="row">
-    <div class="col-12 text-center">
+<div class="row justify-content-center">
         {{> posts/post singlePost=true}}
-    </div>
-    <h3 class="text-secondary text-left">{{dataValues.comment}}</h3>
 </div>
-
+<h3 class="text-secondary text-left">{{dataValues.comment}}</h3>
 {{> comments/commentSection}}
