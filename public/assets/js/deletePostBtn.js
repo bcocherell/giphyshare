@@ -1,9 +1,14 @@
 $('.deletePostBtn').on('click', function (event) {
     event.preventDefault();
-    $.ajax({
-        method: "DELETE",
-        url: "/api/post/" + $(this).attr('data-postid')
-    }).then(function(){
-        location.reload();
-    });
+    if(firebase.auth().currentUser.uid === $(this).attr('data-postid')){
+        $.ajax({
+            method: "DELETE",
+            url: "/api/post/" + $(this).attr('data-postid')
+        }).then(function(){
+            location.reload();
+        });
+    }
+    else{
+        console.log("This isn't your account...");
+    }
 });
