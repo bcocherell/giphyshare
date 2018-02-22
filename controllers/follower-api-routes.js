@@ -8,4 +8,16 @@ module.exports = function(app) {
       res.json(dbFollower);
     });
   });
+
+  // delete route for unfollowing users
+  app.delete("/api/follwers/:id", function(req, res) {
+    db.follower.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(dbFollower) {
+      res.json(dbFollower);
+    });
+  });
 };
