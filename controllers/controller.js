@@ -52,6 +52,10 @@ router.get("/signup", function (req, res) {
     res.render("signup",{signUpPage:true});
 });
 
+router.get("/messages", function (req, res) {
+    res.render("messages");
+});
+
 router.get("/post/:id", function (req, res) {
     db.post.findAll({
         include: [db.subpost, db.user],
